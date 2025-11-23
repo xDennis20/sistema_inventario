@@ -1,0 +1,14 @@
+# --- Basura de Python (Archivos compilados) ---
+__pycache__/
+*.py[cod]
+
+# --- Entornos Virtuales (Pesadísimos, nunca se suben) ---
+env/
+venv/
+.venv/
+# Archivos temporales de mi IDE
+.idea/
+
+# --- Archivos del Sistema Operativo (Mac/Windows) ---
+.DS_Store
+Thumbs.db
