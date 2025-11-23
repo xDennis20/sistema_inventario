@@ -1,3 +1,26 @@
+inventario = {}
+
+def agregar_producto():
+    producto = input("Ingrese el nombre del producto: ").strip().capitalize()
+    precio = 0
+    cantidad = 0
+    if producto in inventario:
+        print("Este producto ya se encuentra en el inventario.")
+        return
+    try:
+        precio = float(input("Ingrese el precio del producto: "))
+        if precio < 0:
+            print("Error: No se permiten numeros negativos")
+            return
+        cantidad = int(input("Ingrese la cantidad a ingresar del producto: "))
+        if cantidad < 0:
+            print("Error: No se permiten numeros negativos")
+            return
+        inventario[producto] = {"precio": precio, "cantidad": cantidad}
+        print(f"Producto '{producto}' Guardado con exito.")
+    except ValueError:
+        print("Error: Tipo de datos invalidos. (Ingrese valores numericos)")
+
 def main():
     salir = False
     opcion = 0
