@@ -21,6 +21,15 @@ def agregar_producto():
     except ValueError:
         print("Error: Tipo de datos invalidos. (Ingrese valores numericos)")
 
+def ver_inventario():
+    print("---- Inventario ----")
+    if len(inventario) == 0:
+        print("No hay productos en el inventario")
+        return
+    for nombre,detalles in inventario.items():
+        print(f"- {nombre} | ${detalles.get("precio")} | Stock: {detalles.get("cantidad")} | Valor total: {detalles.get("cantidad") * detalles.get("precio")}")
+    return
+
 def main():
     salir = False
     opcion = 0
@@ -39,9 +48,13 @@ def main():
             print("Error: Coloque un valor entero")
         match opcion:
             case 1:
-                pass
+                agregar_producto()
+            case 2:
+                ver_inventario()
             case 7:
                 print("Saliendo del Sistema")
                 salir = True
             case _:
                 print("Opcion no valida. Escoja de las opciones correcta")
+if __name__ == '__main__':
+    main()
