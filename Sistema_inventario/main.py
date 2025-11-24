@@ -30,6 +30,24 @@ def ver_inventario():
         print(f"- {nombre} | ${detalles.get("precio")} | Stock: {detalles.get("cantidad")} | Valor total: {detalles.get("cantidad") * detalles.get("precio")}")
     return
 
+def actualizar_stock():
+    producto = input("Ingrese el producto que quiere actualizar el stock: ").strip().capitalize()
+    if producto in inventario:
+        stock = inventario.get(producto)
+        print(f"Stock actual de {producto}: {stock.get("cantidad")}")
+        try:
+            stock_nuevo = int(input("Ingrese la cantidad a ingresar del stock entrante: "))
+            while stock_nuevo + stock.get("cantidad") < 0:
+                print("Error: Ingrese de nuevo una cantidad adecuada")
+                stock_nuevo = int(input("Ingrese la cantidad a ingresar del stock entrante: "))
+            stock["cantidad"] += stock_nuevo
+            print(f"Stock actualizado correctamente, Stock actual: {stock.get("cantidad")}")
+            return
+        except ValueError:
+            print("Error: Tipo de dato incorrecto (Ingrese un valor numerico entero)")
+    else:
+        print("Producto no encontrado en el inventario")
+
 def main():
     salir = False
     opcion = 0
@@ -51,10 +69,15 @@ def main():
                 agregar_producto()
             case 2:
                 ver_inventario()
+            case 3:
+                actualizar_stock()
+            case 6:
+                pass
             case 7:
                 print("Saliendo del Sistema")
                 salir = True
             case _:
                 print("Opcion no valida. Escoja de las opciones correcta")
+
 if __name__ == '__main__':
     main()
