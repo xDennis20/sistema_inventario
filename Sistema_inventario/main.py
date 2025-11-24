@@ -2,8 +2,6 @@ inventario = {}
 
 def agregar_producto():
     producto = input("Ingrese el nombre del producto: ").strip().capitalize()
-    precio = 0
-    cantidad = 0
     if producto in inventario:
         print("Este producto ya se encuentra en el inventario.")
         return
@@ -35,9 +33,10 @@ def actualizar_stock():
     if producto in inventario:
         stock = inventario.get(producto)
         print(f"Stock actual de {producto}: {stock.get("cantidad")}")
+        cantidad_actual = stock.get("cantidad")
         try:
             stock_nuevo = int(input("Ingrese la cantidad a ingresar del stock entrante: "))
-            while stock_nuevo + stock.get("cantidad") < 0:
+            while stock_nuevo + cantidad_actual < 0:
                 print("Error: Ingrese de nuevo una cantidad adecuada")
                 stock_nuevo = int(input("Ingrese la cantidad a ingresar del stock entrante: "))
             stock["cantidad"] += stock_nuevo
@@ -47,6 +46,21 @@ def actualizar_stock():
             print("Error: Tipo de dato incorrecto (Ingrese un valor numerico entero)")
     else:
         print("Producto no encontrado en el inventario")
+        return
+
+def eliminar_producto():
+    producto = input("Ingrese el producto que quiere eliminar del inventario: ").strip().capitalize()
+    confirmadores = {"si","y","yes"}
+    if not producto in inventario:
+        print("Error: Producto no encontrado en el inventario")
+        return
+    confirmador = input(f"¿Esta seguro que quiere eliminar el producto [{producto}] (si/no)?").lower().strip()
+    if confirmador in confirmadores:
+        del inventario[producto]
+        print(f"El producto '{producto}' se elimino del inventario")
+    else:
+        print("Operacion cancelada")
+        return
 
 def main():
     salir = False
@@ -72,7 +86,7 @@ def main():
             case 3:
                 actualizar_stock()
             case 6:
-                pass
+                eliminar_producto()
             case 7:
                 print("Saliendo del Sistema")
                 salir = True
