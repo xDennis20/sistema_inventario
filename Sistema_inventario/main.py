@@ -62,6 +62,25 @@ def eliminar_producto():
         print("Operacion cancelada")
         return
 
+def actualizar_precio():
+    producto = input("Ingrese el producto que quiere actualizar el precio: ").strip().capitalize()
+    if not producto in inventario:
+        print("Producto no encontrado en el inventario")
+        return
+    detalles = inventario.get(producto)
+    precio_actual = detalles.get("precio")
+    print(f"Precio actual ${precio_actual} del producto '{producto}'")
+    try:
+        precio_nuevo = float(input(f"Ingrese el nuevo precio del producto '{producto}'"))
+        while precio_nuevo < 0:
+            print("Precio invalido, coloque un valor positivo")
+            precio_nuevo = float(input(f"Ingrese el nuevo precio del producto '{producto}'"))
+        detalles["precio"] = precio_nuevo
+        print(f"Precio actualizado del producto '{producto}', Precio actual: {precio_nuevo}")
+    except ValueError:
+        print("Error: Tipo de dato invalido, Ingrese un valor numerico")
+    return
+
 def main():
     salir = False
     opcion = 0
@@ -85,6 +104,8 @@ def main():
                 ver_inventario()
             case 3:
                 actualizar_stock()
+            case 4:
+                actualizar_precio()
             case 6:
                 eliminar_producto()
             case 7:
