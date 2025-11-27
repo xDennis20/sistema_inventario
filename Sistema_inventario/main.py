@@ -81,9 +81,18 @@ def actualizar_precio():
         print("Error: Tipo de dato invalido, Ingrese un valor numerico")
     return
 
+def stock_bajo():
+    print("Productos Con Bajo Stock")
+    if len(inventario) == 0:
+        print("---- Inventario vacio ----")
+        return
+    for nombre,detalles in inventario.items():
+        stock_actual = detalles.get("cantidad")
+        if stock_actual <= 5:
+            print(f"- {nombre} | ${detalles.get("precio")} | Stock: {stock_actual} | Valor total: {stock_actual * detalles.get("precio")}\n")
+    return
 def main():
     salir = False
-    opcion = 0
     while not salir:
         print(f"""----- Sistema Inventario -----
         1. Agregar Producto Nuevo
@@ -97,6 +106,7 @@ def main():
             opcion = int(input("Escoja una opcion (1-7): "))
         except ValueError:
             print("Error: Coloque un valor entero")
+            continue
         match opcion:
             case 1:
                 agregar_producto()
@@ -106,6 +116,8 @@ def main():
                 actualizar_stock()
             case 4:
                 actualizar_precio()
+            case 5:
+                stock_bajo()
             case 6:
                 eliminar_producto()
             case 7:
