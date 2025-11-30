@@ -19,7 +19,7 @@ def main():
             continue
         match opcion:
             case 1:
-                nombre = input("Ingrese el nombre del producto").lower().strip().capitalize()
+                nombre = input("Ingrese el nombre del producto").strip().lower().capitalize()
                 try:
                     precio = float(input("Ingrese el precio del producto: "))
                     cantidad = int(input("Ingrese la cantidad del producto: "))
@@ -31,11 +31,35 @@ def main():
                 except ValueError:
                     print("Error: Ingrese valores numericos")
             case 2:
-                pass
+                gestor_inventario.ver_inventario()
             case 3:
-                pass
+                nombre = input("Ingresar el nombre del producto").strip().lower().capitalize()
+                try:
+                    cantidad = int(input("Ingrese el stock nuevo del producto"))
+                    resultado = gestor_inventario.actualizar_stock(nombre,cantidad)
+                    match resultado:
+                        case "OK":
+                            print(f"El stock se actualizo correctamente")
+                        case "NO_EXISTE":
+                            print(f"El producto no existe en el inventario")
+                        case "INVALIDO":
+                            print(f"Cantidad Invalida")
+                except ValueError:
+                    print("Error: Ingrese valor numerico entero")
             case 4:
-                pass
+                nombre = input("Ingrese el nombre del producto ").strip().lower().capitalize()
+                try:
+                    precio = float(input(f"Ingrese el nuevo precio del producto {nombre}: "))
+                    resultado = gestor_inventario.actualizar_precio(nombre,precio)
+                    match resultado:
+                        case "OK":
+                            print(f"El precio se actualizo correctamente")
+                        case "NO_EXISTE":
+                            print(f"El producto no existe en el inventario")
+                        case "INVALIDO":
+                            print(f"Precio Invalido")
+                except ValueError:
+                    print("Error: Ingrese un valor numerico")
             case 5:
                 pass
             case 6:

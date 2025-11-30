@@ -11,5 +11,11 @@ class Producto:
         self.cantidad = nuevo_total
         return True
 
+    def actualizar_precio(self,precio: float) -> bool:
+        if precio < 0:
+            return False
+        self.precio = precio
+        return True
+
     def __str__(self) -> str:
         return f"Producto: {self.nombre} | Precio: ${self.precio} | Stock: {self.cantidad}"
