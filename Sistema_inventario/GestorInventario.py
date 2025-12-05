@@ -1,3 +1,5 @@
+from itertools import product
+
 from Producto import Producto
 class GestorInventario:
     def __init__(self) -> None:
@@ -39,8 +41,16 @@ class GestorInventario:
        else:
            return "INVALIDO"
 
-    def eliminar_producto(self,nombre: str) :
+    def eliminar_producto(self,nombre: str) -> str :
         if not self.buscar_producto(nombre):
             return "NO_EXISTE"
         del self.productos[nombre]
         return "OK"
+
+    def reporte_bajo_stock(self) -> None:
+        if len(self.productos) == 0:
+            print("Inventario Vacio")
+            return
+        for producto in self.productos.values():
+            if producto.cantidad <= 5:
+                print(producto)

@@ -61,7 +61,7 @@ def main():
                 except ValueError:
                     print("Error: Ingrese un valor numerico")
             case 5:
-                pass
+                gestor_inventario.reporte_bajo_stock()
             case 6:
                 producto = input("Ingrese el nombre del producto que desea eliminar")
                 res = gestor_inventario.eliminar_producto(producto)
