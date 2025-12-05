@@ -39,3 +39,8 @@ class GestorInventario:
        else:
            return "INVALIDO"
 
+    def eliminar_producto(self,nombre: str) :
+        if not self.buscar_producto(nombre):
+            return "NO_EXISTE"
+        del self.productos[nombre]
+        return "OK"

@@ -63,7 +63,21 @@ def main():
             case 5:
                 pass
             case 6:
-                pass
+                producto = input("Ingrese el nombre del producto que desea eliminar")
+                res = gestor_inventario.eliminar_producto(producto)
+                confirmar = input(f"Estas seguro de que quieres eliminar el producto {producto}? (si/no)").strip().lower()
+                match confirmar:
+                    case "si":
+                        match res:
+                            case "OK":
+                                print(f"El producto {producto} se elimino correctamente")
+                            case "NO_EXISTE":
+                                print(f"El producto no existe en el inventario")
+                                return
+                    case "no":
+                        return
+                    case _:
+                        return
             case 7:
                 print("Saliendo del Sistema")
                 salir = True
