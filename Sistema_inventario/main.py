@@ -64,12 +64,12 @@ def main():
                 gestor_inventario.reporte_bajo_stock()
             case 6:
                 producto = input("Ingrese el nombre del producto que desea eliminar")
-                res = gestor_inventario.eliminar_producto(producto)
                 confirmar = input(f"Estas seguro de que quieres eliminar el producto {producto}? (si/no)").strip().lower()
                 match confirmar:
                     case "si":
                         match res:
                             case "OK":
+                                res = gestor_inventario.eliminar_producto(producto)
                                 print(f"El producto {producto} se elimino correctamente")
                             case "NO_EXISTE":
                                 print(f"El producto no existe en el inventario")

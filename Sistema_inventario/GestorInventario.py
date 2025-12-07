@@ -1,6 +1,5 @@
-from itertools import product
-
 from Producto import Producto
+
 class GestorInventario:
     def __init__(self) -> None:
         self.productos: dict[str, Producto] = {}
